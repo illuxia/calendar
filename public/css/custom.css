@@ -1,0 +1,24 @@
+﻿#reservation_section, #reservation_form {
+    display: none;
+}
+
+.hour-booked, .hour-available {
+    padding: 0.5rem 2rem;
+    margin: 0 1.5rem 0.5rem 0;
+}
+
+form {
+    padding: 0.5rem;
+}
+
+#messages {
+    height: 3rem;
+}
+
+.success {
+    color:green;
+}
+
+.error {
+    color: red;
+}

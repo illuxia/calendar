@@ -1,0 +1,161 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h2 class="heading-section">Calendar</h2>
+            <div class="row">
+                <div class="container">
+                    <div class="col-md" id="messages">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block left %}
+<section class="ftco-section">
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="elegant-calencar d-md-flex">
+                    <div class="wrap-header d-flex align-items-center img" style="background-image: url(images/bg.jpg);">
+                    <p id="reset">Today</p>
+                <div id="header" class="p-0">
+                            <!-- <div class="pre-button d-flex align-items-center justify-content-center"><i class="fa fa-chevron-left"></i></div> -->
+                <div class="head-info">
+                    <div class="head-month"></div>
+                    <div class="head-day"></div>
+                </div>
+                <!-- <div class="next-button d-flex align-items-center justify-content-center"><i class="fa fa-chevron-right"></i></div> -->
+                </div>
+                </div>
+                <div class="calendar-wrap">
+                <div class="w-100 button-wrap">
+                    <div class="pre-button d-flex align-items-center justify-content-center"><i class="fa fa-chevron-left"></i></div>
+                    <div class="next-button d-flex align-items-center justify-content-center"><i class="fa fa-chevron-right"></i></div>
+                </div>
+                <table id="calendar">
+                <thead>
+                    <tr>
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+                </table>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block right %}
+<section class="ftco-section" id="reservation_section">
+    <div class="row">
+        <div class="container">
+            <div class="col-md" id="reservation_hours">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="container">
+            <div class="col-md" id="reservation_form">
+                <form class="col-md-6 mt-5">
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter your email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="day" class="col-sm-2 col-form-label">Day</label>
+                        <div class="col-sm-10">
+                        <input type="text" id="daytime" class="form-control" value="" disabled>
+                        </div>
+                    </div>
+                    <input type="hidden" name="token" id="token" value="{{ csrf_token('make-reservation') }}"/>
+                    <button type="submit" id="saveReservation" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+</section>
+{% endblock %}
+
