@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +12,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use App\Entity\ReservationTime;
 use App\Entity\Reservation;
-use App\Repository\ReservationRepository;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 class CalendarController extends AbstractController
@@ -29,7 +29,7 @@ class CalendarController extends AbstractController
      */
     public function showReservations($day, $month, $year): JsonResponse
     {
-        $date;
+        $date = null;
         try {
             $date = date( 'Y-m-d', strtotime( $month . ' ' . $day. ', ' . $year ) );
             if (substr($date, 0, 4) == '1970') {
@@ -72,12 +72,12 @@ class CalendarController extends AbstractController
             $time = date( 'H:i:s', strtotime($request->request->get('time')) );
             $datetime = new \DateTime(date('Y-m-d H:i:s', strtotime("$date $time")));
 
-            $reservarion = new Reservation();
-            $reservarion->setName($request->request->get('name'));
-            $reservarion->setEmail($request->request->get('email'));
-            $reservarion->setDate($datetime);
+            $reservation = new Reservation();
+            $reservation->setName($request->request->get('name'));
+            $reservation->setEmail($request->request->get('email'));
+            $reservation->setDate($datetime);
 
-            $errors = $validator->validate($reservarion);
+            $errors = $validator->validate($reservation);
 
             if (count($errors) > 0) {
                 $errorsList = [];
@@ -87,7 +87,7 @@ class CalendarController extends AbstractController
                 return new JsonResponse($errorsList, 400);
             }
             
-            $entityManager->persist($reservarion);
+            $entityManager->persist($reservation);
             $entityManager->flush();
             return new JsonResponse(['message' => 'Reservation success!'], 200);
 
